@@ -1,0 +1,111 @@
+<body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav class="nav navbar-nav navbar-left">
+      <span>Bookers</span>
+    </nav>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a class="glyphicon glyphicon-home home" href="/users/17873"> Home</a></li>
+          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  	<div class="body">
+      <div class="container">
+
+        <p id="notice">Signed in successfully.</p>
+
+
+      	<div class="row">
+  
+  <div class="col-xs-3">
+    <h2>User info</h2>
+    <img class="attachment user profile_image fallback" src="/assets/no_image-ede28af4bad96368ef41be1b4be1cffce0d9402540f75d17895e32cb0d2af5e6.jpg" alt="No image"><table class="table">
+      <tbody><tr></tr> 
+      <tr>
+    	  <th>name</th>
+    	  <th>kamita</th>
+      </tr>
+      <tr>
+    	  <th>introduction</th>
+    	  <th></th>
+      </tr>
+</tbody></table>
+
+<div class="row">
+  <a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_17873" href="/users/17873/edit"></a>
+</div>
+
+    <h2>New book</h2>
+    <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="BsjL4WbYH0wAxBqrkdy+g3qjG2B6F6qIry/T1s0IgDeP2Xyf+jDerAVaWEC9vVboKL09XbHgAHZCgIfKKZZJJQ==">
+  <div class="field row">
+    <label for="book_title">Title</label>
+    <input class="col-xs-12 book_title" type="text" name="book[title]" id="book_title">
+  </div>
+
+  <div class="field row">
+    <label for="book_opinion">Opinion</label>
+    <textarea class="col-xs-12 book_body" name="book[body]" id="book_body"></textarea>
+  </div>
+
+  <div class="actions row">
+    <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
+  </div>
+</form>
+
+  </div>
+
+  <div class="col-xs-9">
+    <h2>Books</h2>
+
+    <table class="table table-hover table-inverse">
+  <thead>
+    <tr> 
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><a href="/users/17873">
+          <img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon">
+</a>        </td>
+        <td><a class="book_28647" href="/books/28647">a</a></td>
+        <td>a</td>
+      </tr>
+      <tr>
+        <td><a href="/users/17873">
+          <img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon">
+</a>        </td>
+        <td><a class="book_28648" href="/books/28648">aiueo</a></td>
+        <td>aiueo</td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+      </div>
+    </div>
+
+    <footer>
+  <div class="container">
+  	<div class="row">
+    	<div class="col-xs-3 col-xs-offset-9">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
+
+
+  
+
+</body>
