@@ -1,118 +1,119 @@
-<body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <nav class="nav navbar-nav navbar-left">
-          <span>Bookers</span>
-        </nav>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-              <li><a class="glyphicon glyphicon-home home" href="/users/17976"> Home</a></li>
-              <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
-              <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
-              <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav class="nav navbar-nav navbar-left">
+      <span>Bookers</span>
+    </nav>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Home', user_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+        <li><%= link_to 'Books', books_path %></li>
+        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  	<div class="body">
-      <div class="container">
-
-        <p id="notice"></p>
-
-
-      	<div class="row">
-
-          <div class="col-xs-3">
-            <h2>User info</h2>
-            <img class="attachment user profile_image fallback" src="/assets/no_image-ede28af4bad96368ef41be1b4be1cffce0d9402540f75d17895e32cb0d2af5e6.jpg" alt="No image">
-            <table class="table">
-              <tbody>
-                <tr></tr>
-                <tr>
-              	  <th>name</th>
-              	  <th>kamita</th>
-                </tr>
-                <tr>
-              	  <th>introduction</th>
-              	  <th></th>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="row">
-              <a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_17976" href="/users/17976/edit"></a>
-            </div>
-
-            <h2>New book</h2>
-            <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="eVkepUSaT2tNER+fuGjeomR3nAVntGhR3r+AP2mb8/HAhDFeTsBbX92QkjrcNwLecYQYLIp6xmeszUcIn2A6hg==">
-              <div class="field row">
-                <label for="book_title">Title</label>
-                <input class="col-xs-12 book_title" type="text" name="book[title]" id="book_title">
-              </div>
-
-              <div class="field row">
-                <label for="book_opinion">Opinion</label>
-                <textarea class="col-xs-12 book_body" name="book[body]" id="book_body"></textarea>
-              </div>
-
-              <div class="actions row">
-                <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
-              </div>
-            </form>
-
-          </div>
-
-      <div class="col-xs-9">
-        <h2>Users</h2>
-
-        <table class="table">
+<div class="container">
+  <p id="notice"><%= notice %></p>
+	<div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+      <div class="profile-container">
+        <%= attachment_image_tag @user, :profile_image_id, :fill, 100, 100, format: 'jpeg', class: "", fallback: "no_image.jpg" %>
+        <table>
           <thead>
             <tr>
-              <th>image</th>
-              <th>name</th>
-              <th colspan="3"></th>
+              <th></th>
             </tr>
           </thead>
-
           <tbody>
-              <tr>
-                <td><img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon"></td>
-                <td>Name1</td>
-                <td><a class="user_17962" href="/users/17962">Show</a></td>
-              </tr>
-              <tr>
-                <td><img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon"></td>
-                <td>ueda</td>
-                <td><a class="user_17963" href="/users/17963">Show</a></td>
-              </tr>
-
-              <tr>
-                <td><img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon"></td>
-                <td>aritomo</td>
-                <td><a class="user_17975" href="/users/17975">Show</a></td>
-              </tr>
-
+            <tr>
+              <td>name</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>introduction</td>
+              <td><%= @user.introduction %></td>
+            </tr>
           </tbody>
         </table>
-
-        </div>
-
+        <% if @user.id == current_user.id %>
+          <div class="row">
+            <div class="col-xs-12"></div>
+              <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "" %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 
-    <footer>
-      <div class="container">
-      	<div class="row">
-        	<div class="col-xs-3 col-xs-offset-9">
-        		<p>CopyRight Infratop.inc</p>
-        	</div>
-        </div>
+<div class="col-xs-3">
+  <h2>New book</h2>
+  <%= form_for(@book) do |f| %>
+    <% if @book.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @book.errors.count %>件のエラーが発生しました。</h2>
+        <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
       </div>
-    </footer>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Opinion</h4>
+        <%= f.text_area :body, class:"form-control", rows:"3" %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.submit "Create Book", class:"btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
+<div class="col-xs-9">
+  <h2>Users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <tb>
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "", fallback: "no_image.jpg" %>
+          </tb>
+          <td><%= user.name %></td>
+          <td><%= link_to 'Show', user_path %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-
-
-</body>
+<footer>
+  <div class="container">
+  	<div class="row">
+    	<div class="col-xs-3 col-xs-offset-9">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
