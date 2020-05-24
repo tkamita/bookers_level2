@@ -6,10 +6,10 @@
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-              <li><a class="glyphicon glyphicon-home home" href="/users/17873"> Home</a></li>
-              <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
-              <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
-              <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+              <li><%= link_to 'Home', user_path %></li>
+              <li><%= link_to 'Users', users_path %></li>
+              <li><%= link_to 'Books', books_path %></li>
+              <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
           </ul>
         </nav>
       </div>
@@ -17,10 +17,7 @@
 
   	<div class="body">
       <div class="container">
-
-        <p id="notice"></p>
-
-
+        <p id="notice"><%= notice %></p>
       	<div class="row">
           <div class="col-xs-3">
             <h2>User info</h2>
@@ -43,7 +40,7 @@
             <a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_17873" href="/users/17873/edit"></a>
           </div>
           <h2>New book</h2>
-          <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="JckqWWxGpAWEwqxlgYfgxLfZZQtcBkFbyPgmpzYuz6jMspTc/chTGLSYIk1JkDKt4KGIO/KdEqfE6O/6WSvdOQ==">
+          <%= form_for(@bbook, url: books_path) do |f| %>
             <div class="field row">
               <label for="book_title">Title</label>
               <input class="col-xs-12 book_title" type="text" name="book[title]" id="book_title">
@@ -56,6 +53,7 @@
 
             <div class="actions row">
               <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
+              <% end %>
             </div>
           </form>
           </div>
@@ -65,9 +63,8 @@
         		<h2>Book detail</h2>
         		<table class="table">
         		  <tbody><tr>
-                <td><a href="/users/17873">
-                  <img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon"><br>
-                  kamita
+         
+                
         </a>        </td>
                 <td><a href="/books/28647">a</a></td>
                 <td>a</td>
