@@ -1,46 +1,24 @@
 
-<header class="navbar navbar-fixed-top navbar-inverse">
+<div class="body">
   <div class="container">
-    <nav class="nav navbar-nav navbar-left">
-      <span>Bookers</span>
-    </nav>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Home', user_path %></li>
-        <li><%= link_to 'Users', users_path %></li>
-        <li><%= link_to 'Books', books_path %></li>
-        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
-      </ul>
-    </nav>
+    <p id="notice"><%= notice %></p>
+  	<h2>User info</h2>
+    <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
+      <div class="form-group has-icon">
+          <label>Name</label>
+          <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+      </div>
+      <div class="form-group has-icon field">
+        <label class="control-label sr-only" for="inputEmail">Image</label>
+        <label>Image</label>
+        <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+      </div>
+      <div class="form-group has-icon">
+        <label class="control-label sr-only" for="inputEmail">Introduction</label>
+        <label>Introduction</label>
+        <%= f.text_area :introduction, autofocus: true, class:"form-control", id:"user_introduction", placeholder:"Introduction"%>
+      </div>
+      <%= f.submit "Update User" %>
+    <% end %>
   </div>
-</header>
-
-<div class="container">
-  <p id="notice"><%= notice %></p>
-	<h2>User info</h2>
-  <%= form_for(@user) do |f| %>
-    <div class="form-group has-icon">
-        <label class="control-label sr-only" for="inputEmail">Name</label>
-        <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
-    </div>
-    <div class="form-group has-icon">
-      <label class="control-label sr-only" for="inputEmail">Image</label>
-      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-    </div>
-    <div class="form-group has-icon">
-      <label class="control-label sr-only" for="inputEmail">Introduction</label>
-      <%= f.text_area :introduction, autofocus: true, class:"form-control", id:"user_introduction", placeholder:"Introduction"%>
-    </div>
-    <%= f.submit "Update User", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-  <% end %>
 </div>
-
-<footer>
-  <div class="container">
-  	<div class="row">
-    	<div class="col-xs-3 col-xs-offset-9">
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
-  </div>
-</footer>
