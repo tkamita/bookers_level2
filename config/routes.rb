@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'homes#top'
-  get 'homes/about'
+  root 'home#top'
+  get 'home/about'
   resources :books, except: [:new]
   resources :users, except: [:new]
+  # resources :users, except: [:new]　do
+  # 	resource :books, except: [:new]
+  # end
 end
 
 
@@ -15,3 +18,4 @@ end
   #     resource :favorites, only: [:create, :destroy]
   #     resource :post_comments, only: [:create]
   # end
+
