@@ -3,9 +3,9 @@ class FavoritesController < ApplicationController
     book = Book.find(params[:book_id])
     fovorite = current_user.favorites.new(book_id: book.id)
     fovorite.save
-    redirect_to book_path(book)
+    # redirect_to book_path(book)
     # @favorite = current_user.favorites.create(book_id: params[:book_id])
-    # redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: root_path)
   end
 
 
