@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#top'
   get 'home/about'
-  resources :books, except: [:new]
+  resources :books, except: [:new] do
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :users, except: [:new]
   # resources :users, except: [:new]　do
   # 	resource :books, except: [:new]
