@@ -18,6 +18,14 @@
           <td>introduction</td>
           <td><%= user.introduction %></td>
         </tr>
+        <tr>
+          <td>follows</td>
+          <td><%= render 'template/stats_followers', locals: { user: @user } %></td>
+        </tr>
+        <tr>
+          <td>follower</td>
+          <td><%= render 'template/stats', locals: { user: @user }  %></td>
+        </tr>
       </tbody>
     </table>
     <div class="row">

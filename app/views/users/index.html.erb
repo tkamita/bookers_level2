@@ -2,7 +2,7 @@
   <div class="container">
     <p id="notice"><%= notice %></p>
     <div class="row">
-      <%= render partial: 'sidemenu', locals: { user: @user, book: @book } %>
+      <%= render partial: 'template/sidemenu', locals: { user: @user, book: @book } %>
       <div class="col-xs-9">
         <h2>Users</h2>
         <table class="table">
@@ -20,6 +20,13 @@
                   <%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "", fallback: "no_image.jpeg", size: "40x40" %>
                 </td>
                 <td><%= user.name %></td>
+                <td>フォロー数：<%= @user.followings.count %></td>
+                <td>フォロワー数：<%= @user.followers.count %></td>
+                <td>
+                  <% unless user.id == current_user.id %>
+                    <%= render 'template/follow_form', locals: { user: @user } %>
+                  <% end %>
+                </td>
                 <td><%= link_to 'Show', user_path(user.id) %></td>
               </tr>
             <% end %>
