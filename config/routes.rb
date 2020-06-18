@@ -6,19 +6,11 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resource :book_comments, only: [:create, :destroy]
   end
-  resources :users, except: [:new]
-  # resources :users, except: [:new]　do
-  # 	resource :books, except: [:new]
-  # end
+  resources :users, except: [:new] do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
 end
-
-
-# , controllers: { registrations: 'users/registrations',
-#   									sessions: 'users/sessions' }
-
-
-  # resources :post_images, only: [:new, :create, :index, :show, :destroy] do
-  #     resource :favorites, only: [:create, :destroy]
-  #     resource :post_comments, only: [:create]
-  # end
 
