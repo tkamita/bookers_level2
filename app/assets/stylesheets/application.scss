@@ -38,3 +38,13 @@ span {
 .field {
 	margin-bottom: 10px;
 }
+
+.form-submit:hover {
+  cursor: pointer;
+  background: rgb(151, 142, 142);
+}
+
+.form-submit:disabled {
+  cursor: not-allowed;
+  background: #d3d2d2;
+}
