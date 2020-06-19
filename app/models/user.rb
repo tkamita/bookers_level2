@@ -37,5 +37,21 @@ class User < ApplicationRecord
   def unfollow!(other_user)
     following_relationships.find_by(following_id: other_user.id).destroy
   end
+
+  def User.search(search, user_or_post, how_search)
+    if user_or_book == "1"
+      if how_search == "1"
+        User.where(['name LIKE ?', "%#{search}%"])
+      elsif how_search == "2"
+        User.where(['name LIKE ?', "%#{search}"])
+      elsif how_search == "3"
+        User.where(['name LIKE ?', "#{search}%"])
+      elsif how_search == "4"
+        User.where(['name LIKE ?', "#{search}"])
+      end
+    else
+      User.all
+    end
+  end
 end
 

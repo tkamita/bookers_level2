@@ -47,6 +47,32 @@ class UsersController < ApplicationController
 		render 'show_follower'
 	end
 
+	# def search
+  #   if params[:name].present?
+  #     @users = User.where('name LIKE ?', "%#{params[:name]}%")
+  #   else
+  #     @users = User.none
+  #   end
+	# end
+	
+	def search
+		@user_or_book = params[:option]
+		@how_search = params[:choice]
+		if @user_or_book == "1"
+			if params[:search].present?
+				@users = User.search(params[:search], @user_or_book, @how_search)
+			else
+				@users = User.none
+			end
+		else
+			if params[:search].present?
+				@books = Book.search(params[:search], @user_or_book, @how_search)
+			else
+				@books = Book.none
+			end
+    end
+  end
+
 
 	private
 		def user_params
