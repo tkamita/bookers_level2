@@ -22,6 +22,10 @@ class User < ApplicationRecord
     self.favorites.exists?(book_id: book.id)
   end
 
+  def already_following?(user)
+    self.following_relationships.exists?(following_id: user.id)
+  end
+
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)
   end
