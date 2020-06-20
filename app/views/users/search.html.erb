@@ -1,35 +1,14 @@
-
-
-
 <div class="body">
-
-
-<% if @user_or_book == "1"%>
-    <h1>User</h1>
-    <table>
-        <% @users.each do |user| %>
-        <thead>
-            <tr>
-                <th></th>
-                <th><%= user.name %> </th>
-            </tr>
-        </thead>
-        <% end %>
-    </table>
-
-<% elsif @user_or_book == "2" %>
-    <h2>Book</h2>
-    <table>
-    <% @books.each do |book| %>
-        <thead>
-            <tr>
-                <th></th>
-                <th><%= book.title %></th>
-            </tr>
-        </thead>
-    <% end %>
-    </table>
-<% else %>
-<% end %>
-
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-9">
+				<% if @user_or_book == "1"%>
+					<%= render 'template/user_index', users: @users %>
+				<% elsif @user_or_book == "2" %>
+					<%= render 'template/book_index', books: @books %>
+				<% else %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
