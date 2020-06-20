@@ -26,17 +26,7 @@
             </tr>
             <tr>
               <td>
-                <% if current_user.already_favorited?(@book) %>
-                  <%= link_to book_favorites_path(@book), method: :delete do %>
-                    <i class="fas fa-heart"></i>
-                  <% end %>
-                  <%= @book.favorites.count %>
-                  <% else %>
-                  <%= link_to book_favorites_path(@book), method: :post do %>
-                    <i class="far fa-heart"></i>
-                  <% end %>
-                  <%= @book.favorites.count %>
-                <% end %>
+                <%= render 'template/like', book: @book %>
               </td>
               <td>
                 <i class="far fa-comments"></i>
@@ -55,31 +45,7 @@
             </tr>
           </tbody>
         </table>
-        <table>
-        <% @book.book_comments.each do |book_comment| %>
-          <tbody class="comment">
-            <tr>
-              <td class="avatar">
-                <%= attachment_image_tag book_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40"%>
-                <%= link_to book_comment.user.name, user_path(@user.id) %>
-              </td>
-              <td class="comment-author clearfix">
-                <span class="comment-meta">
-                  <span class="comment-date"><%= @book.created_at.strftime('%Y/%m/%d') %></span>
-                </span>
-              </td>
-              <td class="comment-entry"><%= book_comment.comment %></td>
-              <td>
-                <% if book_comment.user == current_user%>
-                  <div>
-                    <%= link_to "削除", book_book_comments_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger pull-right" %>
-                  </div>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        <% end %>
-        </table>
+        <%= render 'template/book_comment', { book: @book, user: @user } %>
         <%= form_for [@book, @book_comment] do |f| %>
           <div class="row">
               <div class="col-sm-12">
