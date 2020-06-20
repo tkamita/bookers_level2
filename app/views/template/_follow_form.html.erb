@@ -1,8 +1,8 @@
 <div id="follow_form">
-<% if current_user.already_following?(@user) %>
-  <%= render 'template/unfollow' %>
+<% if current_user.already_following?(user) %>
+  <%= render 'template/unfollow', user: user %>
 <% else %>
-  <%= render 'template/follow' %>
+  <%= render 'template/follow', user: user %>
 <% end %>
 </div>
 

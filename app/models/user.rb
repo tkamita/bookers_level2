@@ -26,9 +26,9 @@ class User < ApplicationRecord
     self.following_relationships.exists?(following_id: user.id)
   end
 
-  def following?(other_user)
-    following_relationships.find_by(following_id: other_user.id)
-  end
+  # def following?(other_user)
+  #   following_relationships.find_by(following_id: other_user.id)
+  # end
 
   def follow!(other_user)
     following_relationships.create!(following_id: other_user.id)

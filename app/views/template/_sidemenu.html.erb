@@ -20,11 +20,11 @@
         </tr>
         <tr>
           <td>follows</td>
-          <td><%= render 'template/stats', locals: { user: @user }  %></td>
+          <td><%= render 'template/stats', user: user %></td>
         </tr>
         <tr>
           <td>follower</td>
-          <td><%= render 'template/stats_followers', locals: { user: @user } %></td>
+          <td><%= render 'template/stats_followers', user: user %></td>
         </tr>
       </tbody>
     </table>
@@ -34,7 +34,7 @@
           <%= link_to "", edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_18309" %>
         </p>
       <% else %>
-          <%= render 'template/follow_form', locals: { user: @user } %>
+          <%= render 'template/follow_form', user: user %>
       <% end %>
     </div>
   </div>
