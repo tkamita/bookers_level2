@@ -1,1 +1,1 @@
-$('#comment-<%= @book_comment.id %>').remove();
+$(".comments_area").html("<%= j(render 'template/book_comment', { book_comments: @book.book_comments, book: @book }) %>")

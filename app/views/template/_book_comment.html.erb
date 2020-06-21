@@ -1,27 +1,27 @@
 <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
 <table>
   <% book.book_comments.first(5).each do |book_comment| %>
-  <tbody class="comment">
-    <tr>
-      <td class="avatar">
-        <%= attachment_image_tag book_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40"%>
-        <%= link_to book_comment.user.name, user_path(user.id) %>
-      </td>
-      <td class="comment-author clearfix">
-        <span class="comment-meta">
-          <span class="comment-date"><%= book.created_at.strftime('%Y/%m/%d') %></span>
-        </span>
-      </td>
-      <td class="comment-entry"><%= book_comment.comment %></td>
-      <td>
-        <% if book_comment.user == current_user%>
-          <div id="comment-<%= book_comment.id %>">
-            <%= link_to "削除", book_book_comments_path(book_comment.book_id, book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
-          </div>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
+    <% unless book_comment.id.nil? %>
+      <tbody class="comment">
+        <tr>
+          <td class="avatar">
+            <%= attachment_image_tag book_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40"%>
+            <%= link_to book_comment.user.name, user_path(book_comment.user.id) %>
+          </td>
+          <td class="comment-author clearfix">
+            <span class="comment-meta">
+              <span class="comment-date"><%= book.created_at.strftime('%Y/%m/%d') %></span>
+            </span>
+          </td>
+          <td class="comment-entry"><%= book_comment.comment %></td>
+          <td>
+            <% if book_comment.user == current_user%>
+              <%= link_to "削除", book_book_comments_path(book_comment.book_id, comment: book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
   <% end %>
 </table>
 <div class="collapse" id="collapseExample">
@@ -31,7 +31,7 @@
       <tr>
         <td class="avatar">
           <%= attachment_image_tag book_comment.user, :profile_image, fallback: "no_image.jpg", size: "40x40"%>
-          <%= link_to book_comment.user.name, user_path(user.id) %>
+          <%= link_to book_comment.user.name, user_path(book_comment.user.id) %>
         </td>
         <td class="comment-author clearfix">
           <span class="comment-meta">
@@ -41,9 +41,7 @@
         <td class="comment-entry"><%= book_comment.comment %></td>
         <td>
           <% if book_comment.user == current_user%>
-            <div id="comment-<%= book_comment.id %>">
-              <%= link_to "削除", book_book_comments_path(book_comment.book_id, book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
-            </div>
+            <%= link_to "削除", book_book_comments_path(book_comment.book_id, comment: book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
           <% end %>
         </td>
       </tr>
