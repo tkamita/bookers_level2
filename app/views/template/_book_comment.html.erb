@@ -1,6 +1,6 @@
 <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
 <table>
-  <% book.book_comments.first(2).each do |book_comment| %>
+  <% book.book_comments.first(5).each do |book_comment| %>
   <tbody class="comment">
     <tr>
       <td class="avatar">
@@ -15,8 +15,8 @@
       <td class="comment-entry"><%= book_comment.comment %></td>
       <td>
         <% if book_comment.user == current_user%>
-          <div>
-            <%= link_to "削除", book_book_comments_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger pull-right" %>
+          <div id="comment-<%= book_comment.id %>">
+            <%= link_to "削除", book_book_comments_path(book_comment.book_id, book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
           </div>
         <% end %>
       </td>
@@ -26,7 +26,7 @@
 </table>
 <div class="collapse" id="collapseExample">
   <table>
-    <% book.book_comments.offset(2).each do |book_comment| %>
+    <% book.book_comments.offset(5).each do |book_comment| %>
     <tbody class="comment">
       <tr>
         <td class="avatar">
@@ -41,8 +41,8 @@
         <td class="comment-entry"><%= book_comment.comment %></td>
         <td>
           <% if book_comment.user == current_user%>
-            <div>
-              <%= link_to "削除", book_book_comments_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger pull-right" %>
+            <div id="comment-<%= book_comment.id %>">
+              <%= link_to "削除", book_book_comments_path(book_comment.book_id, book_comment.id), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
             </div>
           <% end %>
         </td>

@@ -45,16 +45,12 @@
             </tr>
           </tbody>
         </table>
-        <%= render 'template/book_comment', { book: @book, user: @user } %>
-        <%= form_for [@book, @book_comment] do |f| %>
-          <div class="row">
-              <div class="col-sm-12">
-                  <%= f.text_area :comment, rows:'5', class: "form-control js-form-validate",placeholder: "コメントをここに" %>
-              </div>
-          </div>
-          <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right form-submit js-disabled-submit" %>
-          <%= javascript_include_tag "app.js" %>
-        <% end %>
+        <div class="comments_area">
+          <%= render partial: 'template/book_comment', locals: { book_comments: @book_comments, book: @book, user: @user } %>
+        </div>
+        <div>
+          <%= render partial: 'template/comment_form', locals: { book_comment: @book_comment, book: @book } %>
+        </div>
       </div>
     </div>
   </div>
