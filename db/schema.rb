@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_06_22_065752) do
 
   create_table "book_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "book_id"
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 2020_06_22_065752) do
     t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "users", force: :cascade do |t|
