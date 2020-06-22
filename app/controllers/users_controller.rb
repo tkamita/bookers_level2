@@ -47,13 +47,6 @@ class UsersController < ApplicationController
 		render 'show_follower'
 	end
 
-	# def search
-  #   if params[:name].present?
-  #     @users = User.where('name LIKE ?', "%#{params[:name]}%")
-  #   else
-  #     @users = User.none
-  #   end
-	# end
 	
 	def search
 		@user_or_book = params[:option]
@@ -73,9 +66,8 @@ class UsersController < ApplicationController
     end
   end
 
-
 	private
 		def user_params
-			params.require(:user).permit(:name, :introduction, :profile_image)
+			params.require(:user).permit(:name, :introduction, :profile_image, :postcode, :prefecture_name, :address_city, :address_street, :address_building)
 		end
 end
