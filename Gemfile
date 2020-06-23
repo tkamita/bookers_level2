@@ -78,3 +78,4 @@ gem 'jp_prefecture'
 gem 'geocoder'
 
 gem 'http'
+gem 'dotenv-rails'
