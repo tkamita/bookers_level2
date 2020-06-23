@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
   root 'home#top'
   get 'home/about'
   get '/map_request', to: 'users#map', as: 'map_request'
