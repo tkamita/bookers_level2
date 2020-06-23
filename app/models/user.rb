@@ -10,8 +10,8 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
-  geocoded_by :prefecture_code
-  after_validation :geocode, if: :prefecture_code_changed?
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
