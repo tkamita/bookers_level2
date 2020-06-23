@@ -51,41 +51,30 @@
     </div>
   </div>
 </div>
-
-<h2>Your Map</h2>
-
-<div id="map">
-</div>
-
-<style>
-#map{
-  height: 400px;
-}
-</style>
-
-
-
-<script>
-  
-  function initMap(){
-    var test = {lat: <%= @user.latitude %>, lng: <%= @user.longitude %>};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: test
-    });
-
-    
-    var marker = new google.maps.Marker({
-      position: test,
-      map: map,
-    });
-    
-
-    marker.addListener('click', function(){
-      infowindow.open(map, marker);
-    });
+<% if @user.id == current_user.id %>
+  <h2>Your Map</h2>
+  <div id="map">
+  </div>
+  <style>
+  #map{
+    height: 400px;
   }
-</script>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVUrrIPBR_xl1xlCeAmYCWPR6-SG2MLQA&callback=initMap" async defer></script>
+  </style>
+  <script>
+    function initMap(){
+      var test = {lat: <%= @user.latitude %>, lng: <%= @user.longitude %>};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: test
+      });
+      var marker = new google.maps.Marker({
+        position: test,
+        map: map,
+      });
+      marker.addListener('click', function(){
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVUrrIPBR_xl1xlCeAmYCWPR6-SG2MLQA&callback=initMap" async defer></script>
+<% end %>
