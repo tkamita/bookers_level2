@@ -52,12 +52,7 @@
   </div>
 </div>
 
-<h2>gmap</h2>
-<!-- form_withはデフォルトでremote: trueの挙動になります -->
-<%= form_with url: map_request_path, method: :get do |f|%>
-  <%= f.text_field :address %>
-  <%= f.submit '地図表示' %>
-<% end %>
+<h2>Your Map</h2>
 
 <div id="map">
 </div>
@@ -68,13 +63,26 @@
 }
 </style>
 
-<script>
-  let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
 
+
+<script>
+  
   function initMap(){
-    mapInstance = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
+    var test = {lat: <%= @user.latitude %>, lng: <%= @user.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: test
+    });
+
+    
+    var marker = new google.maps.Marker({
+      position: test,
+      map: map,
+    });
+    
+
+    marker.addListener('click', function(){
+      infowindow.open(map, marker);
     });
   }
 </script>
