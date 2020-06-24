@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $("#user_postcode").jpostal({
+    # e.preventDefault();
     postcode : [ "#user_postcode" ],
     address  : {
                   "#user_address" : "%3%4%5%6%7",
